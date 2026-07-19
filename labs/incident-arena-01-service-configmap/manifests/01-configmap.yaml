@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: arena-web-config
+  namespace: incident-arena-01
+data:
+  index.html: |
+    application=arena-web
+    environment=development
+    status=running
