@@ -6,5 +6,5 @@ metadata:
 data:
   index.html: |
     application=arena-web
-    environment=development
+    environment=production
     status=running
