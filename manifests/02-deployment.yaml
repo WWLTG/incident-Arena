@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arena-api
+  namespace: incident-arena-02
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arena-api
+  template:
+    metadata:
+      labels:
+        app: arena-api
+    spec:
+      containers:
+        - name: api
+          image: busybox:1.37.0
+          command:
+            - /bin/sh
+            - -c
+          args:
+            - |
+              mkdir -p /www
+              printf 'application=arena-api\nenvironment=%s\nstatus=running\n' "$APP_ENV" > /www/index.html
+              exec httpd -f -p 8080 -h /www
+          env:
+            - name: APP_ENV
+              valueFrom:
+                secretKeyRef:
+                  name: arena-api-settings
+                  key: environment
+          ports:
+            - name: http
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 2
+            periodSeconds: 3
+            timeoutSeconds: 1
+            failureThreshold: 2
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 100m
+              memory: 64Mi
