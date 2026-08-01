@@ -15,4 +15,4 @@ spec:
               service:
                 name: arena-api-service
                 port:
-                  name: web
+                  name: http
