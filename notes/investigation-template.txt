@@ -26,16 +26,13 @@ The NetworkPolicy allowed client namespaces with arena-access=approved.
 Root cause
 The NetworkPolicy namespace selector did not match the client namespace label.
 
-# Observed failure
+Issue 3
+Observed failure
+The direct Service request succeeded, but the request through Traefik returned HTTP 404.
 
-# Evidence
+Evidence
+The Ingress backend referenced the Service port named web.
+The arena-api-service port was named http.
 
-# Root cause
-
-# Issue 3
-
-# Observed failure
-
-# Evidence
-
-# Root cause
+Root cause
+The Ingress backend port name did not match the Service port name.
