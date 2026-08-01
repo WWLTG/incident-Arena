@@ -20,7 +20,7 @@ spec:
     - from:
         - namespaceSelector:
             matchLabels:
-              arena-access: approved
+              arena-access: trusted
       ports:
         - protocol: TCP
           port: 80
