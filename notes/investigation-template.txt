@@ -1,25 +1,31 @@
 # Incident Arena 03 Investigation
 
-## Issue 1
+ Issue 1
 
-### Observed failure
+# Observed failure
+The client could not connect to arena-api-service.
 
-### Evidence
+# Evidence
+The arena-api Pod had the label app=arena-api.
+The Service selector was app=arena-service.
+The EndpointSlice contained no endpoints or ports.
 
-### Root cause
+# Root cause
+The Service selector did not match the application Pod label.
 
-## Issue 2
 
-### Observed failure
+# Issue 2
 
-### Evidence
+# Observed failure
 
-### Root cause
+# Evidence
 
-## Issue 3
+# Root cause
 
-### Observed failure
+# Issue 3
 
-### Evidence
+# Observed failure
 
-### Root cause
+# Evidence
+
+# Root cause
