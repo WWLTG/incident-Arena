@@ -1,13 +1,19 @@
 # Investigation
 
-## Observed failure
+# Observed failure
+The arena-api Pod remains in CreateContainerConfigError.
+The Deployment has zero available replicas, and the client request fails.
 
-- 
+# Evidence
+Pod events report:
+Error: couldn't find key environment in Secret incident-arena-02/arena-api-settings
 
-## Evidence
+The Secret contains the key:
+app-environment
+The Deployment references the key:
+environment
 
-- 
+# Root cause
+The Secret key referenced by the Deployment does not match the key stored in the Secret.
+The Deployment requests environment, but the Secret defines app-environment.
 
-## Root cause
-
-- 
