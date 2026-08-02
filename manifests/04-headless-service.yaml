@@ -6,7 +6,7 @@ metadata:
 spec:
   clusterIP: None
   selector:
-    app: arena-storage
+    app: arena-store
   ports:
     - name: http
       port: 80
