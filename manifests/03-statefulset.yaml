@@ -66,4 +66,4 @@ spec:
                 path: index.html
         - name: data
           persistentVolumeClaim:
-            claimName: arena-store-dtaa
+            claimName: arena-store-data
