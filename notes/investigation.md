@@ -25,10 +25,14 @@ Root cause
 The StatefulSet ConfigMap volume contained a typo in the items key.
 It referenced index.htlm instead of the existing ConfigMap key index.html.
 
-## Incident 3
+Incident 3
+Observed failure
+The StatefulSet Pod was healthy, but the client could not resolve or access the headless Service.
 
-### Observed failure
+Evidence
+The Service selector was app=arena-storage.
+The StatefulSet Pod label was app=arena-store.
+The EndpointSlice contained no endpoints, and the client DNS and HTTP tests failed.
 
-### Evidence
-
-### Root cause
+Root cause
+The headless Service selector did not match the StatefulSet Pod label.
