@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: arena-store-content
+  namespace: incident-arena-04
+data:
+  index.html: |
+    application=arena-store
+    environment=production
+    status=running
