@@ -62,7 +62,7 @@ spec:
           configMap:
             name: arena-store-content
             items:
-              - key: index.htlm
+              - key: index.html
                 path: index.html
         - name: data
           persistentVolumeClaim:
