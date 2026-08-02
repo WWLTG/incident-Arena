@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: arena-api-ingress
+  namespace: incident-arena-03-app
+spec:
+  podSelector:
+    matchLabels:
+      app: arena-api
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: traefik
+      ports:
+        - protocol: TCP
+          port: 80
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              arena-access: trusted
+      ports:
+        - protocol: TCP
+          port: 80

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: arena-api-content
+  namespace: incident-arena-03-app
+data:
+  index.html: |
+    application=arena-api
+    environment=production
+    status=running
+    incident=arena-03
