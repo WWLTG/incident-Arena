@@ -1,0 +1,21 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: incident-arena-04-local
+provisioner: rancher.io/local-path
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion: false
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: arena-store-data
+  namespace: incident-arena-04
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: incident-arena-04-local
+  resources:
+    requests:
+      storage: 64Mi
