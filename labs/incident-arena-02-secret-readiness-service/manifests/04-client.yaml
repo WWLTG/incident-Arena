@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: arena-client
+  namespace: incident-arena-02
+  labels:
+    app: arena-client
+spec:
+  containers:
+    - name: client
+      image: busybox:1.37.0
+      command:
+        - /bin/sh
+        - -c
+        - sleep 36000
+      resources:
+        requests:
+          cpu: 5m
+          memory: 8Mi
+        limits:
+          cpu: 50m
+          memory: 32Mi
