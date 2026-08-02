@@ -12,13 +12,18 @@ The existing PVC was named arena-store-data and remained in WaitForFirstConsumer
 Root cause
 The StatefulSet referenced the wrong PersistentVolumeClaim name because of a typo in claimName.
 
-## Incident 2
+Incident 2
 
-### Observed failure
+Observed failure
+The StatefulSet Pod remained stuck during volume initialization.
 
-### Evidence
+Evidence
+The Pod event reported:
+MountVolume.SetUp failed for volume content because the ConfigMap referenced the non-existent key index.htlm.
 
-### Root cause
+Root cause
+The StatefulSet ConfigMap volume contained a typo in the items key.
+It referenced index.htlm instead of the existing ConfigMap key index.html.
 
 ## Incident 3
 
