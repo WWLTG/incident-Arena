@@ -8,3 +8,4 @@ Kubernetes troubleshooting labs for Junior DevOps practice.
 - Incident Arena 02
 - Incident Arena 03
 - Incident Arena 04
+- Incident Arena 05 — CronJob, RBAC, and ConfigMap troubleshooting with four sequential errors.
