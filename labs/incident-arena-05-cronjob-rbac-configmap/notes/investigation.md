@@ -28,14 +28,19 @@ The Role targeted the wrong Kubernetes resource.
 
 ---------------------------------------
 
+Issue 3
+Observed failure
+The reporting Pod remained forbidden from reading the ConfigMap after correcting the Role.
 
-## Issue 3
+Evidence
+The Pod used the arena-reporter ServiceAccount, but the RoleBinding subject referenced arena-report.
 
-### Observed failure
+Root cause
+The RoleBinding granted the Role to the wrong ServiceAccount.
 
-### Evidence
+---------------------------------------
 
-### Root cause
+
 
 ## Issue 4
 
