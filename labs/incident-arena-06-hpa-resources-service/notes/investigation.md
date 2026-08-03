@@ -43,7 +43,16 @@ The Deployment container did not define a CPU request, which the utilization-bas
 -----------------------------------------------
 
 
+Incident 4
 
+Observed failure:
+The application CPU utilization exceeded the HPA target, but the Deployment remained at one replica.
+
+Evidence:
+The HPA reported CPU utilization above the 50% target, ScalingLimited was True with the reason TooManyReplicas, and maxReplicas was set to 1.
+
+Root cause:
+The HPA maximum replica count prevented any scale-up because it was equal to the minimum replica count.
 
 
 
