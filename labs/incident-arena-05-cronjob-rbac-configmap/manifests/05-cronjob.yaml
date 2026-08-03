@@ -17,7 +17,7 @@ spec:
           labels:
             app: arena-report
         spec:
-          serviceAccountName: arena-reporter-sa
+          serviceAccountName: arena-reporter
           restartPolicy: Never
           containers:
             - name: reporter
