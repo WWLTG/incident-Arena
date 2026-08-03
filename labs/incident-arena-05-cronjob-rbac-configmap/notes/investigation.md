@@ -15,13 +15,19 @@ The CronJob referenced a nonexistent ServiceAccount name.
 
 ---------------------------------------
 
-## Issue 2
+Issue 2
+Observed failure
+The reporting container started but could not read the ConfigMap.
 
-### Observed failure
+Evidence
+The Pod logs returned Forbidden when the arena-reporter ServiceAccount attempted to get ConfigMaps. The Role granted get permission on Secrets instead of ConfigMaps.
 
-### Evidence
+Root cause
+The Role targeted the wrong Kubernetes resource.
 
-### Root cause
+
+---------------------------------------
+
 
 ## Issue 3
 
