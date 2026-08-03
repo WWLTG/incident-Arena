@@ -42,10 +42,12 @@ The RoleBinding granted the Role to the wrong ServiceAccount.
 
 
 
-## Issue 4
+Issue 4
+Observed failure
+The reporting Pod could read the ConfigMap but failed while evaluating the JSONPath expression.
 
-### Observed failure
+Evidence
+The container logs reported that report_message was not found. The ConfigMap contained the misspelled key report_mesage.
 
-### Evidence
-
-### Root cause
+Root cause
+The ConfigMap data key did not match the key expected by the CronJob.
