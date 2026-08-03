@@ -12,7 +12,16 @@ Root cause:
 The Service selector did not match the Deployment Pod label, so Kubernetes could not register the Pod as a Service endpoint.
 
 ------------------------------------------------
+Incident 2
 
+Observed failure:
+The HPA could not read the current scale, and its CPU target remained unknown.
+
+Evidence:
+The HPA referenced Deployment arena-api, while the only application Deployment was arena-web. The HPA reported FailedGetScale because arena-api was not found.
+
+Root cause:
+The HPA scaleTargetRef name did not match the existing Deployment name.
 
 
 
