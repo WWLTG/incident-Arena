@@ -1,0 +1,41 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: arena-report
+  namespace: incident-arena-05
+spec:
+  schedule: "*/5 * * * *"
+  suspend: true
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 2
+  jobTemplate:
+    spec:
+      backoffLimit: 1
+      template:
+        metadata:
+          labels:
+            app: arena-report
+        spec:
+          serviceAccountName: arena-reporter-sa
+          restartPolicy: Never
+          containers:
+            - name: reporter
+              image: registry.k8s.io/kubectl:v1.36.1
+              imagePullPolicy: IfNotPresent
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  set -eu
+
+                  value="$(kubectl get configmap arena-report-config \
+                    -n incident-arena-05 \
+                    -o jsonpath='{.data.report_message}')"
+
+                  if [ -z "$value" ]; then
+                    echo "required key report_message not found"
+                    exit 1
+                  fi
+
+                  echo "report_message=$value"

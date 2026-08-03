@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: arena-report-config
+  namespace: incident-arena-05
+data:
+  report_mesage: cluster-audit-ready
