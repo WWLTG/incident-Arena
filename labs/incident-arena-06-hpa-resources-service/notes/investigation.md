@@ -27,7 +27,16 @@ The HPA scaleTargetRef name did not match the existing Deployment name.
 
 -----------------------------------------------
 
+Incident 3
 
+Observed failure:
+The HPA found the Deployment but could not calculate CPU utilization, so the CPU target remained unknown.
+
+Evidence:
+The HPA reported FailedGetResourceMetric and stated that the arena-web container had no CPU request.
+
+Root cause:
+The Deployment container did not define a CPU request, which the utilization-based HPA requires to calculate CPU usage as a percentage.
 
 
 
