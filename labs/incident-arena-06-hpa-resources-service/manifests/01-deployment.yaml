@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arena-web
+  namespace: incident-arena-06
+  labels:
+    app: arena-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arena-web
+  template:
+    metadata:
+      labels:
+        app: arena-web
+    spec:
+      containers:
+        - name: arena-web
+          image: registry.k8s.io/hpa-example:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 2
+            periodSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
