@@ -1,12 +1,19 @@
 # Investigation
 
-## Issue 1
+Issue 1
+Observed failure
 
-### Observed failure
+The manual Job could not create a Pod.
 
-### Evidence
+Evidence
 
-### Root cause
+The Job events reported that ServiceAccount arena-reporter-sa was not found. The existing ServiceAccount was named arena-reporter.
+
+Root cause
+
+The CronJob referenced a nonexistent ServiceAccount name.
+
+---------------------------------------
 
 ## Issue 2
 
