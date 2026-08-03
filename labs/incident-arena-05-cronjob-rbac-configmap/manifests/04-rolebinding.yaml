@@ -5,7 +5,7 @@ metadata:
   namespace: incident-arena-05
 subjects:
   - kind: ServiceAccount
-    name: arena-report
+    name: arena-reporter
     namespace: incident-arena-05
 roleRef:
   apiGroup: rbac.authorization.k8s.io
