@@ -23,19 +23,12 @@ spec:
             - name: reporter
               image: registry.k8s.io/kubectl:v1.36.1
               imagePullPolicy: IfNotPresent
-              command:
-                - /bin/sh
-                - -c
-                - |
-                  set -eu
-
-                  value="$(kubectl get configmap arena-report-config \
-                    -n incident-arena-05 \
-                    -o jsonpath='{.data.report_message}')"
-
-                  if [ -z "$value" ]; then
-                    echo "required key report_message not found"
-                    exit 1
-                  fi
-
-                  echo "report_message=$value"
+              args:
+                - get
+                - configmap
+                - arena-report-config
+                - -n
+                - incident-arena-05
+                - -o
+                - 'jsonpath=report_message={.data.report_message}{"\n"}'
+                - --allow-missing-template-keys=false
