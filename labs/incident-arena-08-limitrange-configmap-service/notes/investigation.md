@@ -16,13 +16,21 @@ Root cause
 The Deployment memory limit exceeds the maximum memory limit
 allowed by the namespace LimitRange.
 
-## Issue 2
+Issue 2
 
-### Observed failure
+Observed failure
 
-### Evidence
+The arena-web Pod is created but remains in CreateContainerConfigError.
 
-### Root cause
+Evidence
+
+Pod events report that the key app-environment cannot be found
+in the arena-web-config ConfigMap.
+
+Root cause
+
+The Deployment references the ConfigMap key app-environment,
+but the ConfigMap contains the key environment.
 
 
 ## Issue 3
