@@ -43,13 +43,20 @@ But the readiness probe checks:
 The readiness probe uses the wrong HTTP path.
 ---
 
-## Failure 3
+Failure 3
+Observed failure
 
-### Observed failure
+The Deployment and Pod are healthy, but requests through the Service fail.
 
-### Evidence
+Evidence
 
-### Root cause
+The Service forwards traffic to port 8080.
+
+The nginx container is reachable locally on port 80.
+
+Root cause
+
+The Service targetPort does not match the port where nginx is listening.
 
 ---
 
