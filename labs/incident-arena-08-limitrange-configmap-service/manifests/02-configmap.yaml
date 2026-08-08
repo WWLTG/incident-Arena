@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: arena-web-config
+  namespace: incident-arena-08
+data:
+  environment: production
