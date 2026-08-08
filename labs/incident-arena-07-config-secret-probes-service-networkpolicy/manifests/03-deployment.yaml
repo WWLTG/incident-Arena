@@ -44,7 +44,7 @@ spec:
               containerPort: 80
           readinessProbe:
             httpGet:
-              path: /readyz
+              path: /ready
               port: http
             initialDelaySeconds: 2
             periodSeconds: 3
