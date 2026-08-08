@@ -18,14 +18,29 @@ Root cause
 The Deployment references the wrong Secret key name.
 ---
 
-## Failure 2
+Failure 2
 
-### Observed failure
+Observed failure
 
-### Evidence
+The new arena-api Pod is Running but remains 0/1 Ready.
 
-### Root cause
+Evidence
 
+Pod events show:
+
+Readiness probe failed: HTTP probe failed with statuscode: 404
+
+The initContainer created:
+
+/usr/share/nginx/html/ready
+
+But the readiness probe checks:
+
+/readyz
+
+ Root cause
+
+The readiness probe uses the wrong HTTP path.
 ---
 
 ## Failure 3
