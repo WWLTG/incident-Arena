@@ -1,13 +1,21 @@
 # Investigation
 
-## Failure 1
+Failure 1
+Observed failure
 
-### Observed failure
+The arena-api Pod is stuck in Init:CreateContainerConfigError.
 
-### Evidence
+Evidence
 
-### Root cause
+The initContainer expects Secret key apiToken, but arena-api-secret contains api-token.
 
+Pod events report:
+
+couldn't find key apiToken in Secret incident-arena-07-app/arena-api-secret
+
+Root cause
+
+The Deployment references the wrong Secret key name.
 ---
 
 ## Failure 2
