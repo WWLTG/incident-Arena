@@ -33,10 +33,19 @@ The Deployment references the ConfigMap key app-environment,
 but the ConfigMap contains the key environment.
 
 
-## Issue 3
+Issue 3
 
-### Observed failure
+Observed failure
 
-### Evidence
+The arena-web Pod is running, but the client cannot reach
+arena-web-service.
 
-### Root cause
+Evidence
+
+The Service has no endpoints.
+The application Pod is labeled app=arena-web,
+while the Service selector uses app=arena-api.
+
+Root cause
+
+The Service selector does not match the application Pod label.
