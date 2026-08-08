@@ -29,7 +29,7 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: arena-web-config
-                  key: app-environment
+                  key: environment
           ports:
             - name: http
               containerPort: 8080
