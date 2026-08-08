@@ -60,13 +60,26 @@ The Service targetPort does not match the port where nginx is listening.
 
 ---
 
-## Failure 4
+Failure 4
+Observed failure
 
-### Observed failure
+The application is reachable from the app namespace, but the client namespace times out.
 
-### Evidence
+Evidence
 
-### Root cause
+A request from incident-arena-07-app succeeds.
+
+The NetworkPolicy allows namespaces with:
+
+arena-access=arena-client
+
+But the client namespace has:
+
+arena-access=client
+
+Root cause
+
+The NetworkPolicy namespace selector does not match the client namespace label.
 
 ---
 
