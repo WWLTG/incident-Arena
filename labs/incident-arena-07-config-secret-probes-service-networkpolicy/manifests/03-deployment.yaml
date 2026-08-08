@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arena-api
+  namespace: incident-arena-07-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arena-api
+  template:
+    metadata:
+      labels:
+        app: arena-api
+    spec:
+      initContainers:
+        - name: render-content
+          image: busybox:1.36
+          command:
+            - sh
+            - -c
+            - |
+              printf 'message=%s\napi_token=%s\nstatus=running\n' "$APP_MESSAGE" "$API_TOKEN" > /work/index.html
+              printf 'ok\n' > /work/ready
+          env:
+            - name: APP_MESSAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: arena-api-config
+                  key: app-message
+            - name: API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: arena-api-secret
+                  key: apiToken
+          volumeMounts:
+            - name: web-content
+              mountPath: /work
+      containers:
+        - name: nginx
+          image: nginx:1.27-alpine
+          ports:
+            - name: http
+              containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: http
+            initialDelaySeconds: 2
+            periodSeconds: 3
+            timeoutSeconds: 1
+            failureThreshold: 2
+          volumeMounts:
+            - name: web-content
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: web-content
+          emptyDir: {}

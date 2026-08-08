@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: arena-api-config
+  namespace: incident-arena-07-app
+data:
+  app-message: "incident-arena-07"

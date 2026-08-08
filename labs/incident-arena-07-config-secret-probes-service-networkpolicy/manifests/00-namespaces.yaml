@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: incident-arena-07-app
+  labels:
+    arena-access: app
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: incident-arena-07-client
+  labels:
+    arena-access: client
