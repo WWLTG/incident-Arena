@@ -34,10 +34,18 @@ Root cause
 The Deployment references a Secret key that does not exist in arena-web-secret.
 
 
-## Failure 3
+Failure 3
+Observed failure
 
-### Observed failure
+The arena-web Pod is running, but the client cannot reach arena-web-service.
 
-### Evidence
+Evidence
+The Service selector is:
+app=arena-api
+The application Pod label is:
+app=arena-web
+The Service therefore has no matching endpoint.
 
-### Root cause
+Root cause
+
+The Service selector does not match the application Pod label.
