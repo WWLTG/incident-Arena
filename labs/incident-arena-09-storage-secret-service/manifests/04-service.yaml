@@ -5,7 +5,7 @@ metadata:
   namespace: incident-arena-09
 spec:
   selector:
-    app: arena-api
+    app: arena-web
   ports:
     - name: http
       port: 80
