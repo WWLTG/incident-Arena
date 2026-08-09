@@ -6,7 +6,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: arena-local
+  storageClassName: standard
   resources:
     requests:
       storage: 100Mi
