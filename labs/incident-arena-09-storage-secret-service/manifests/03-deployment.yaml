@@ -24,7 +24,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: arena-web-secret
-                  key: app_mode
+                  key: app-mode
           volumeMounts:
             - name: app-data
               mountPath: /var/lib/arena
