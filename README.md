@@ -12,3 +12,4 @@ Kubernetes troubleshooting labs for Junior DevOps practice.
 - Incident Arena 06 — HPA - Resources and Service troubleshooting with four sequential errors.
 - Incident Arena 07 — Config, Secret, Probes, Service, and NetworkPolicy troubleshooting with four sequential errors.
 - Incident Arena 08 — LimitRange, ConfigMap, and Service troubleshooting with three sequential errors.
+- Incident Arena 09 — Storage, Secret, and Service troubleshooting with three sequential errors.
