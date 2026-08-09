@@ -17,13 +17,21 @@ Root cause
 
 The PVC references a StorageClass named arena-local that does not exist in the cluster.
 
-## Failure 2
+ Failure 2
 
-### Observed failure
+Observed failure
 
-### Evidence
+The arena-web Pod is stuck in CreateContainerConfigError.
 
-### Root cause
+Evidence
+
+Pod events show:
+
+Error: couldn't find key app_mode in Secret incident-arena-09/arena-web-secret
+
+Root cause
+
+The Deployment references a Secret key that does not exist in arena-web-secret.
 
 
 ## Failure 3
