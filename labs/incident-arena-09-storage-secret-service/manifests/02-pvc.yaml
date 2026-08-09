@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: arena-web-data
+  namespace: incident-arena-09
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: arena-local
+  resources:
+    requests:
+      storage: 100Mi
