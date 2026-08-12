@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: arena-web-ingress
+  namespace: incident-arena-10
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: arena10.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: arena-web-service
+                port:
+                  number: 8080

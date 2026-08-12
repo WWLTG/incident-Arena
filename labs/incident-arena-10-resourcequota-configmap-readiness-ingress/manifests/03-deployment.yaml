@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arena-web
+  namespace: incident-arena-10
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arena-web
+  template:
+    metadata:
+      labels:
+        app: arena-web
+    spec:
+      containers:
+        - name: web
+          image: nginx:1.27-alpine
+          env:
+            - name: APP_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: arena-web-config
+                  key: application
+            - name: APP_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: arena-web-config
+                  key: app_environment
+          command:
+            - /bin/sh
+            - -c
+            - |
+              printf 'application=%s\nenvironment=%s\nstatus=running\n' \
+                "$APP_NAME" "$APP_ENV" \
+                > /usr/share/nginx/html/index.html
+              exec nginx -g 'daemon off;'
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 80
+            initialDelaySeconds: 2
+            periodSeconds: 3
