@@ -16,13 +16,17 @@ The web container does not define resources.requests or resources.limits.
 
 
 
-## Failure 2
+Failure 2
 
-### Observed failure
+Observed failure
+The arena-web Pod is stuck in CreateContainerConfigError.
 
-### Evidence
+Evidence
 
-### Root cause
+Pod events show that Kubernetes cannot find the app_environment key in the arena-web-config ConfigMap.
+Root cause
+
+The Deployment references a ConfigMap key that does not exist.
 
 
 ## Failure 3
