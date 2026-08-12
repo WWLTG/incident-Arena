@@ -33,7 +33,7 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: arena-web-config
-                  key: app_environment
+                  key: environment
           command:
             - /bin/sh
             - -c
