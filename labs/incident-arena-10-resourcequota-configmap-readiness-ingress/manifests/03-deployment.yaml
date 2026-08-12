@@ -44,7 +44,7 @@ spec:
               exec nginx -g 'daemon off;'
           readinessProbe:
             httpGet:
-              path: /readyz
+              path: /
               port: 80
             initialDelaySeconds: 2
             periodSeconds: 3
