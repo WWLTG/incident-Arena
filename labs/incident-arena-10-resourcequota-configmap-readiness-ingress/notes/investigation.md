@@ -42,10 +42,17 @@ Root cause
 The readiness probe uses an incorrect HTTP path.
 
 
-## Failure 4
 
-### Observed failure
+Failure 4
 
-### Evidence
+Observed failure
 
-### Root cause
+Direct requests through arena-web-service succeed, but requests through Traefik return HTTP 404.
+
+Evidence
+
+The Ingress backend references arena-web-service on port 8080, while the Service exposes port 80.
+
+Root cause
+
+The Ingress references the wrong Service port.
