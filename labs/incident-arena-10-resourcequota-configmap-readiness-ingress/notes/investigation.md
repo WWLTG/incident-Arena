@@ -29,13 +29,17 @@ Root cause
 The Deployment references a ConfigMap key that does not exist.
 
 
-## Failure 3
+Failure 3
 
-### Observed failure
+Observed failure
+The new arena-web Pod is Running but remains 0/1 Ready.
 
-### Evidence
+Evidence
+The readiness probe checks /readyz on port 80, but nginx serves the application from /.
+A request to / succeeds while /readyz returns 404.
 
-### Root cause
+Root cause
+The readiness probe uses an incorrect HTTP path.
 
 
 ## Failure 4
