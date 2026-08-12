@@ -16,6 +16,13 @@ spec:
       containers:
         - name: web
           image: nginx:1.27-alpine
+          resources:
+            requests:
+              cpu: 50m
+              memory: 32Mi
+            limits:
+              cpu: 100m
+              memory: 64Mi
           env:
             - name: APP_NAME
               valueFrom:
