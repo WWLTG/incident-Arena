@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: arena-db
+  namespace: incident-arena-11
+spec:
+  serviceName: arena-db-headless
+  replicas: 2
+  selector:
+    matchLabels:
+      app: arena-db
+  template:
+    metadata:
+      labels:
+        app: arena-db
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+      containers:
+        - name: db
+          image: nginx:1.27-alpine
+          ports:
+            - containerPort: 80
+          command:
+            - /bin/sh
+            - -c
+            - |
+              printf 'pod=%s\nstatus=running\n' \
+                "$(hostname)" \
+                > /usr/share/nginx/html/index.html
+              exec nginx -g 'daemon off;'
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 2
+            periodSeconds: 3
+          volumeMounts:
+            - name: data
+              mountPath: /usr/share/nginx/html
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        storageClassName: fast-ssd
+        resources:
+          requests:
+            storage: 256Mi
