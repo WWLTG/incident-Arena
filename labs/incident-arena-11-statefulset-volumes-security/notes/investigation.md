@@ -1,12 +1,11 @@
 # Incident Arena 11 — Investigation
 
-## Failure 1
+Observed failure: StatefulSet arena-db shows 0/2 ready, pod arena-db-0 stuck in Pending state.
 
-### Observed failure
+Evidence: Pod events show FailedScheduling due to unbound PersistentVolumeClaim. PVC data-arena-db-0 stays Pending with event ProvisioningFailed, storageclass fast-ssd not found.
 
-### Evidence
+Root cause: volumeClaimTemplate in the StatefulSet references a nonexistent StorageClass (fast-ssd) instead of the cluster's actual default StorageClass.
 
-### Root cause
 
 
 ## Failure 2
