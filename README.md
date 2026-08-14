@@ -14,3 +14,4 @@ Kubernetes troubleshooting labs for Junior DevOps practice.
 - Incident Arena 08 — LimitRange, ConfigMap, and Service troubleshooting with three sequential errors.
 - Incident Arena 09 — Storage, Secret, and Service troubleshooting with three sequential errors.
 - Incident Arena 10 — Sesourcequota-Configmap-readiness-ingress troubleshooting with four sequential errors.
+- Incident Arena 11 — StatefulSet ordering, PersistentVolumeClaims, and SecurityContext troubleshooting with four sequential errors.
