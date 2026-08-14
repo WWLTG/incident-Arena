@@ -4,6 +4,7 @@ metadata:
   name: arena-db-headless
   namespace: incident-arena-11
 spec:
+  clusterIP: None
   selector:
     app: arena-db
   ports:
