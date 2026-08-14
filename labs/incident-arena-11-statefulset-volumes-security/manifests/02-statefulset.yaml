@@ -17,6 +17,7 @@ spec:
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000
+        fsGroup: 1000
       containers:
         - name: db
           image: nginx:1.27-alpine
@@ -39,6 +40,15 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /usr/share/nginx/html
+            - name: cache
+              mountPath: /var/cache/nginx
+            - name: run
+              mountPath: /var/run
+      volumes:
+        - name: cache
+          emptyDir: {}
+        - name: run
+          emptyDir: {}
   volumeClaimTemplates:
     - metadata:
         name: data
