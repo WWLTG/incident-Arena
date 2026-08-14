@@ -8,13 +8,13 @@ Root cause: volumeClaimTemplate in the StatefulSet references a nonexistent Stor
 
 
 
-## Failure 2
+Failure 2
 
-### Observed failure
+Observed failure: Pod arena-db-0 is stuck in CrashLoopBackOff, container db restarting repeatedly.
 
-### Evidence
+Evidence: Events show the container is being created and started successfully but then backs off. PVC is now Bound with the standard StorageClass, so storage itself is no longer the issue.
 
-### Root cause
+Root cause: Pod securityContext sets runAsUser 1000 but does not set fsGroup, so the mounted volume ownership does not allow the container process to write to /usr/share/nginx/html, causing nginx to exit.
 
 
 ## Failure 3
