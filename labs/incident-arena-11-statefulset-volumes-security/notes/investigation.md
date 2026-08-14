@@ -30,10 +30,9 @@ Root cause
 The readinessProbe targets port 8080, but the container only exposes and listens on port 80. Because the default StatefulSet podManagementPolicy is OrderedReady, arena-db-0 never becoming Ready blocks arena-db-1 from being created at all.
 
 
-## Failure 4
+Failure 4
+Observed failure: Per-pod DNS lookups happen to resolve on this cluster's CoreDNS, but querying the governing service name itself returns a single ClusterIP instead of the full set of pod addresses.
 
-### Observed failure
+Evidence: kubectl get service arena-db-headless shows a real ClusterIP instead of None. nslookup on the service name returns one address, not one per pod. final-verification.sh explicitly asserts clusterIP equals None and fails on this check.
 
-### Evidence
-
-### Root cause
+Root cause: The Service manifest is missing clusterIP: None, so it is not a true headless Service. This defeats the purpose of the StatefulSet governing service for peer discovery, even though this cluster's CoreDNS still resolves individual pod hostnames.
