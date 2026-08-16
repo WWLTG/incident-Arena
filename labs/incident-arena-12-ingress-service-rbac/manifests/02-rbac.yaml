@@ -21,7 +21,7 @@ metadata:
   namespace: incident-arena-12
 subjects:
   - kind: ServiceAccount
-    name: flag-reader-sa
+    name: flag-reader
     namespace: incident-arena-12
 roleRef:
   kind: Role
