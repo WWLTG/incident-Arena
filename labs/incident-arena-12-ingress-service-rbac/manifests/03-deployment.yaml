@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: feature-flag-api
+  namespace: incident-arena-12
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flag-api
+  template:
+    metadata:
+      labels:
+        app: flag-api
+    spec:
+      serviceAccountName: flag-reader
+      initContainers:
+        - name: fetch-flags
+          image: bitnami/kubectl:1.29
+          command:
+            - sh
+            - -c
+            - kubectl get configmap feature-flags -n incident-arena-12 -o jsonpath='{.data.flags\.json}' > /shared/flags.json
+          volumeMounts:
+            - name: shared-data
+              mountPath: /shared
+      containers:
+        - name: nginx
+          image: nginx:alpine
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: shared-data
+              mountPath: /usr/share/nginx/html
+          readinessProbe:
+            httpGet:
+              path: /flags.json
+              port: 80
+            initialDelaySeconds: 3
+            periodSeconds: 5
+      volumes:
+        - name: shared-data
+          emptyDir: {}
