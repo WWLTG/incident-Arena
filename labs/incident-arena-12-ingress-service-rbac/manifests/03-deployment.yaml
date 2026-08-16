@@ -16,7 +16,7 @@ spec:
       serviceAccountName: flag-reader
       initContainers:
         - name: fetch-flags
-          image: bitnami/kubectl:1.29
+          image: alpine/k8s:1.33.13
           command:
             - sh
             - -c
